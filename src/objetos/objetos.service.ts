@@ -12,8 +12,8 @@ export class ObjetosService {
         const sql = 
         `
         INSERT INTO objetos
-        (nome, descricao, local_encontrado, data, status_objeto)
-        VALUES(?,?,?)
+        (nome, descricao, local_encontrado, data_encontrado, status_objeto)
+        VALUES(?,?,?,?,?)
         `
         const resultado = await this.databaseService.query(sql, [nome, descricao, local_encontrado, data, status_objeto]) as ResultSetHeader
 
