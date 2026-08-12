@@ -30,4 +30,6 @@ export class ObjetosService {
         }
     }
 
+    async exibir (createObjetoDto)
+
 }
