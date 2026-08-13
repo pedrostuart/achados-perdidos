@@ -11,7 +11,7 @@ export class CreateObjetoDto{
     local_encontrado: string;
     @IsDate()
     @IsNotEmpty()
-    data: Date;
+    data_encontrado: Date;
     @IsString()
     @IsNotEmpty()
     status_objeto: string;
