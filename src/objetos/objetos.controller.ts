@@ -1,4 +1,4 @@
-import { Controller, Body, Post, Get, Param, ParseIntPipe } from '@nestjs/common';
+import { Controller, Body, Post, Get, Param, ParseIntPipe, Put, Delete } from '@nestjs/common';
 import { CreateObjetoDto } from './dto/create-objeto.dto';
 import { ObjetosService } from './objetos.service';
 
@@ -17,5 +17,13 @@ export class ObjetosController {
     @Get(':id')
     buscarPorID(@Param('id', ParseIntPipe) id: number){
         return this.objetoService.buscarPorId(id)
+    }
+    @Put(':id')
+    atualizar(@Param('id', ParseIntPipe) id: number, @Body() createObjetoDto: CreateObjetoDto){
+        return this.objetoService.atualizar(id, createObjetoDto)
+    }
+    @Delete(':id')
+    deletar(@Param('id', ParseIntPipe) id:number){
+        return this.objetoService.deletar(id)
     }
 }
