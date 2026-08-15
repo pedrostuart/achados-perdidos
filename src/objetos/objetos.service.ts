@@ -35,6 +35,7 @@ export class ObjetosService {
         const resultado = await this.databaseService.query('SELECT * FROM objeto') 
         return resultado
     }
+    
     async buscarPorId(id:number){
         const resultado = await this.databaseService.query('SELECT * FROM objeto WHERE id = ?', [id]) as RowDataPacket[]
 
