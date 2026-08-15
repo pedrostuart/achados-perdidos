@@ -59,8 +59,30 @@ export class ObjetosController {
         description: "Não foi possivel exibir os objetos por id"
     })
     buscarPorID(@Param('id', ParseIntPipe) id: number){
+       
         return this.objetoService.buscarPorId(id)
+        
     }
+
+    @Get('status/:status_objeto')
+    @ApiOperation({
+        summary: 'Exibir objetos por status'
+    })
+    @ApiResponse({
+        status: 201,
+        description: 'Objetos exibidos por status com sucesso'
+    })
+    @ApiResponse({
+        status: 404,
+        description: 'Não foi possivel exibir os objetos por status'
+    })
+    buscarPorStatus(@Param('status_objeto') status_objeto: string){
+        return this.objetoService.buscarPorStatus(status_objeto)
+    }
+    
+
+
+
     @Put(':id')
     @ApiOperation({
         summary: "Atualizar objetos por id"

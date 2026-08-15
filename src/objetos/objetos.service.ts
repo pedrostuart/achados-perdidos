@@ -45,6 +45,16 @@ export class ObjetosService {
         return resultado[0]
     }
 
+    async buscarPorStatus(status_objeto: string){
+        const resultado = await this.databaseService.query('SELECT * FROM objeto WHERE status_objeto = ?', [status_objeto]) as RowDataPacket
+        if(resultado.length === 0){
+            throw new NotFoundException('Status não encontrado')
+        }
+        return resultado
+    }
+
+
+
     async atualizar(id:number, createObjetoDto: UpdateObjetoDto) {
         const {nome, descricao, local_encontrado, data_encontrado, status_objeto} = createObjetoDto
 
