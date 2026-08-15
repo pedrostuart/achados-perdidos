@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { DatabaseService } from 'src/database/database.service';
 import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import { CreateObjetoDto } from './dto/create-objeto.dto';
-import { NotFoundError, switchAll } from 'rxjs';
+import { UpdateObjetoDto } from './dto/update-objeto.dto';
 @Injectable()
 export class ObjetosService {
     constructor (private readonly databaseService: DatabaseService){}
@@ -45,7 +45,7 @@ export class ObjetosService {
         return resultado[0]
     }
 
-    async atualizar(id:number, createObjetoDto: CreateObjetoDto) {
+    async atualizar(id:number, createObjetoDto: UpdateObjetoDto) {
         const {nome, descricao, local_encontrado, data_encontrado, status_objeto} = createObjetoDto
 
         await this.buscarPorId(id)

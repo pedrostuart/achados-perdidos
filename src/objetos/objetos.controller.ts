@@ -2,6 +2,7 @@ import { Controller, Body, Post, Get, Param, ParseIntPipe, Put, Delete } from '@
 import { CreateObjetoDto } from './dto/create-objeto.dto';
 import { ObjetosService } from './objetos.service';
 import { ApiResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { UpdateObjetoDto } from './dto/update-objeto.dto';
 
 @ApiTags('objetos')
 
@@ -72,8 +73,8 @@ export class ObjetosController {
         status: 404,
         description: "Não foi possivel atualizar o objeto por id"
     })
-    atualizar(@Param('id', ParseIntPipe) id: number, @Body() createObjetoDto: CreateObjetoDto){
-        return this.objetoService.atualizar(id, createObjetoDto)
+    atualizar(@Param('id', ParseIntPipe) id: number, @Body() updateObjetoDto: UpdateObjetoDto){
+        return this.objetoService.atualizar(id, updateObjetoDto)
     }
     @Delete(':id')
 
