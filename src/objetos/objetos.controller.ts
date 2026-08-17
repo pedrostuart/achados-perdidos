@@ -2,6 +2,7 @@ import { Controller, Body, Post, Get, Param, ParseIntPipe, Put, Delete } from '@
 import { CreateObjetoDto } from './dto/create-objeto.dto';
 import { ObjetosService } from './objetos.service';
 import { ApiResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { UpdateObjetoDto } from './dto/update-objeto.dto';
 
 @ApiTags('objetos')
 
@@ -58,8 +59,30 @@ export class ObjetosController {
         description: "Não foi possivel exibir os objetos por id"
     })
     buscarPorID(@Param('id', ParseIntPipe) id: number){
+       
         return this.objetoService.buscarPorId(id)
+        
     }
+
+    @Get('status/:status_objeto')
+    @ApiOperation({
+        summary: 'Exibir objetos por status'
+    })
+    @ApiResponse({
+        status: 201,
+        description: 'Objetos exibidos por status com sucesso'
+    })
+    @ApiResponse({
+        status: 404,
+        description: 'Não foi possivel exibir os objetos por status'
+    })
+    buscarPorStatus(@Param('status_objeto') status_objeto: string){
+        return this.objetoService.buscarPorStatus(status_objeto)
+    }
+    
+
+
+
     @Put(':id')
     @ApiOperation({
         summary: "Atualizar objetos por id"
@@ -72,8 +95,8 @@ export class ObjetosController {
         status: 404,
         description: "Não foi possivel atualizar o objeto por id"
     })
-    atualizar(@Param('id', ParseIntPipe) id: number, @Body() createObjetoDto: CreateObjetoDto){
-        return this.objetoService.atualizar(id, createObjetoDto)
+    atualizar(@Param('id', ParseIntPipe) id: number, @Body() updateObjetoDto: UpdateObjetoDto){
+        return this.objetoService.atualizar(id, updateObjetoDto)
     }
     @Delete(':id')
 
